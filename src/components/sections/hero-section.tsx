@@ -3,8 +3,24 @@
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
+import { useTheme } from "next-themes"
+import { useState, useEffect } from "react"
 
 export default function HeroSection() {
+  const { theme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+  
+  // Only show the UI after mount to avoid hydration mismatches
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  // Define the logo gradient based on the current theme
+  const logoGradient = !mounted ? "bg-gradient-to-r from-black from-10% via-zinc-800 via-50% to-purple-600 to-100%" :
+    theme === "light" 
+      ? "bg-gradient-to-r from-black from-10% via-zinc-800 via-50% to-purple-600 to-100%" 
+      : "bg-gradient-to-r from-white from-10% via-purple-200 via-50% to-purple-500 to-100%"
+
   return (
     <section className="pt-32 pb-20">
       <div className="container mx-auto px-4">
@@ -20,12 +36,13 @@ export default function HeroSection() {
             transition={{ duration: 0.5, delay: 0.2 }}
             className="text-4xl md:text-6xl font-bold mb-6"
           >
-            Transform Your Digital Presence with{" "}
+            Transform Your Digital Presence with
+            <br />
             <motion.span
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.5, delay: 0.4 }}
-              className="text-[hsl(var(--primary))] relative"
+              className={`bg-clip-text text-transparent ${logoGradient}`}
             >
               Savannah Haus
             </motion.span>

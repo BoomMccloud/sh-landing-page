@@ -4,11 +4,23 @@ import Link from "next/link"
 import { Moon, Sun, Menu, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
-import { useState } from "react"
+import { useState, useEffect } from "react"
 
 export default function Nav() {
   const { theme, setTheme } = useTheme()
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [mounted, setMounted] = useState(false)
+  
+  // Only show the UI after mount to avoid hydration mismatches
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+  
+  // Define the logo gradient based on the current theme
+  const logoGradient = !mounted ? "bg-gradient-to-r from-black from-10% via-zinc-800 via-50% to-purple-600 to-100%" :
+    theme === "light" 
+      ? "bg-gradient-to-r from-black from-10% via-zinc-800 via-50% to-purple-600 to-100%" 
+      : "bg-gradient-to-r from-white from-10% via-purple-200 via-50% to-purple-500 to-100%"
 
   return (
     <motion.nav 
@@ -18,8 +30,10 @@ export default function Nav() {
       className="fixed top-0 w-full z-50 border-b border-[hsl(var(--border))] backdrop-blur-sm bg-[hsl(var(--background))/0.8]"
     >
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-        <Link href="/" className="text-2xl font-bold text-[hsl(var(--primary))] transition-colors hover:text-[hsl(var(--primary))/0.8]">
-          Savannah Haus
+        <Link href="/" className="flex items-center font-bold transition-colors hover:opacity-80">
+          <span className={`text-2xl bg-clip-text text-transparent ${logoGradient}`}>
+            Savannah Haus
+          </span>
         </Link>
         
         {/* Desktop Navigation */}
