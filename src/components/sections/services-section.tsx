@@ -12,48 +12,58 @@ export default function ServicesSection() {
   const [activeTab, setActiveTab] = useState("advertising")
 
   return (
-    <section id="services" className="py-20 bg-[hsl(var(--muted))/0.3]">
+    <section id="services" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Our Services</h2>
-          <p className="text-lg text-[hsl(var(--foreground))/0.7] max-w-2xl mx-auto">
+          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
             Comprehensive solutions to elevate your brand and digital presence
           </p>
         </div>
 
         <Tabs defaultValue="advertising" value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex justify-center mb-8">
-            <TabsList className="grid w-full max-w-md grid-cols-2">
-              <TabsTrigger value="advertising">Advertising</TabsTrigger>
-              <TabsTrigger value="development">App Development</TabsTrigger>
+            <TabsList className="grid w-full max-w-md grid-cols-2 h-[40px] bg-secondary p-[2px] rounded-full">
+              <TabsTrigger 
+                value="advertising" 
+                className="rounded-full data-[state=active]:bg-background data-[state=active]:ring-1 data-[state=active]:ring-slate-200/40 dark:data-[state=active]:ring-slate-800 data-[state=active]:font-medium"
+              >
+                Advertising
+              </TabsTrigger>
+              <TabsTrigger 
+                value="development" 
+                className="rounded-full data-[state=active]:bg-background data-[state=active]:ring-1 data-[state=active]:ring-slate-200/40 dark:data-[state=active]:ring-slate-800 data-[state=active]:font-medium"
+              >
+                App Development
+              </TabsTrigger>
             </TabsList>
           </div>
 
           <TabsContent value="advertising" className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               <ServiceCard
-                icon={<Target className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<Target className="h-10 w-10 text-primary" />}
                 title="Performance Advertising"
                 description="Targeted campaigns on Google, Facebook, X, and TikTok focused on high-value user conversions."
                 isActive={activeTab === "advertising"}
                 delay={0.1}
               />
               <ServiceCard
-                icon={<Megaphone className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<Megaphone className="h-10 w-10 text-primary" />}
                 title="Brand Advertising"
                 description="Strategic campaigns focused on reach and frequency to raise brand awareness and recognition."
                 isActive={activeTab === "advertising"}
                 delay={0.2}
               />
               <ServiceCard
-                icon={<Palette className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<Palette className="h-10 w-10 text-primary" />}
                 title="Creative Optimization"
                 description="Optimization of advertising creative including text, graphics, and short videos."
                 isActive={activeTab === "advertising"}
                 delay={0.3}
               />
               <ServiceCard
-                icon={<BarChart3 className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<BarChart3 className="h-10 w-10 text-primary" />}
                 title="Measurement Solutions"
                 description="Comprehensive analytics using tools like Google Analytics to track user conversion and retention."
                 isActive={activeTab === "advertising"}
@@ -65,21 +75,21 @@ export default function ServicesSection() {
           <TabsContent value="development" className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <ServiceCard
-                icon={<Smartphone className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<Smartphone className="h-10 w-10 text-primary" />}
                 title="iOS Development"
                 description="Custom iOS app development with intuitive UX/UI design and seamless performance."
                 isActive={activeTab === "development"}
                 delay={0.1}
               />
               <ServiceCard
-                icon={<Smartphone className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<Smartphone className="h-10 w-10 text-primary" />}
                 title="Android Development"
                 description="Robust Android applications built for performance and user engagement."
                 isActive={activeTab === "development"}
                 delay={0.2}
               />
               <ServiceCard
-                icon={<Bot className="h-10 w-10 text-[hsl(var(--primary))]" />}
+                icon={<Bot className="h-10 w-10 text-primary" />}
                 title="AI Integration"
                 description="Implementation of AI agents including chatbots, service representatives, and virtual avatars."
                 isActive={activeTab === "development"}
@@ -108,7 +118,7 @@ function ServiceCard({ icon, title, description, isActive, delay }: ServiceCardP
       animate={{ opacity: isActive ? 1 : 0, y: isActive ? 0 : 20 }}
       transition={{ duration: 0.5, delay }}
     >
-      <Card className="h-full transition-all hover:shadow-lg hover:border-[hsl(var(--primary))/0.5]">
+      <Card className="h-full transition-all hover:shadow-lg hover:border-primary/50">
         <CardHeader>
           <div className="mb-2">{icon}</div>
           <CardTitle>{title}</CardTitle>
