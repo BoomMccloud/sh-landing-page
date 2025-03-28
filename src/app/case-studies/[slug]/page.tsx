@@ -4,12 +4,14 @@ export async function generateStaticParams() {
   return Object.keys(caseStudies).map((slug) => ({ slug }))
 }
 
-type Props = {
-  params: { slug: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+interface PageProps {
+  params: {
+    slug: string
+  }
+  searchParams: Record<string, string | string[] | undefined>
 }
 
-export default function CaseStudyPage({ params }: Props) {
+export default async function CaseStudyPage({ params }: PageProps) {
   const study: CaseStudy | undefined = caseStudies[params.slug as keyof typeof caseStudies]
   
   if (!study) return <div>Case study not found</div>
