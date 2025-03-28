@@ -10,11 +10,6 @@ const caseStudies = [
   {
     title: "User Growth: Short Video App",
     description: "Generated 100k visitors through organic & paid traffic in 2 weeks",
-    results: [
-      "Developed 50+ gender-specific creatives",
-      "Implemented granular audience targeting",
-      "Achieved 35% conversion rate improvement"
-    ],
     metrics: [
       { value: "100k visitors in 2 weeks", label: "Total Visitors" },
       { value: "35%", label: "CR Increase" }
@@ -24,18 +19,27 @@ const caseStudies = [
     image: "/square_short_video.jpg"
   },
   {
-    title: "AI-Powered Customer Service App",
-    description: "Revolutionizing customer support with AI integration",
-    metrics: "60% reduction in response time",
-    image: "/placeholder-case-study-2.jpg",
-    link: "/case-studies/ai-customer-service"
+    title: "AI Strategy: Customer Service Bot",
+    description: "Enhanced customer support with RAG-powered AI and multilingual capabilities",
+    metrics: [
+      { value: "80%+", label: "Response Accuracy" },
+      { value: "60%", label: "Reduction in Manual Escalations" },
+      { value: "3 Weeks", label: "Time to Market" }
+    ],
+    slug: "ai-customer-service",
+    link: "/case-studies/ai-customer-service",
+    image: "/chat_bot.png"
   },
   {
-    title: "Brand Awareness Campaign",
-    description: "Building brand recognition through strategic advertising",
-    metrics: "2x increase in brand awareness",
-    image: "/placeholder-case-study-3.jpg",
-    link: "/case-studies/brand-awareness"
+    title: "Live Music Social Platform",
+    description: "Built a hyper-local social platform connecting live-house music fans",
+    metrics: [
+      { value: "2.5k+ MAU", label: "Monthly Active Users" },
+      { value: "85% Retention", label: "Event Connection Rate" }
+    ],
+    slug: "live-music-social",
+    link: "/case-studies/live-music-social",
+    image: "/placeholder-case-study-3.jpg"
   }
 ]
 
@@ -95,6 +99,19 @@ export default function CaseStudiesSection() {
       <CaseStudyDialog
         isOpen={selectedCaseStudy === "short-video-app-growth"}
         onClose={() => setSelectedCaseStudy(null)}
+        caseStudyId="short-video-app-growth"
+      />
+
+      <CaseStudyDialog
+        isOpen={selectedCaseStudy === "ai-customer-service"}
+        onClose={() => setSelectedCaseStudy(null)}
+        caseStudyId="ai-customer-service"
+      />
+
+      <CaseStudyDialog
+        isOpen={selectedCaseStudy === "live-music-social"}
+        onClose={() => setSelectedCaseStudy(null)}
+        caseStudyId="live-music-social"
       />
     </section>
   )

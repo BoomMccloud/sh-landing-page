@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
+import { Facebook, Twitter, Instagram, Linkedin, Mail, ArrowRight } from "lucide-react"
 
 export default function Footer() {
   return (
@@ -72,11 +72,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
-                  Careers
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
                   Blog
                 </Link>
               </li>
@@ -91,12 +86,14 @@ export default function Footer() {
                 <span className="text-foreground/70">info@savannahhaus.com</span>
               </li>
               <li className="flex items-start">
-                <Phone className="mr-2 h-5 w-5 text-primary shrink-0" />
-                <span className="text-foreground/70">+1 (555) 123-4567</span>
-              </li>
-              <li className="flex items-start">
-                <MapPin className="mr-2 h-5 w-5 text-primary shrink-0" />
-                <span className="text-foreground/70">123 Innovation Drive, San Francisco, CA 94103</span>
+                <Link 
+                  href="https://calendly.com/jason-b-xu/30min" 
+                  target="_blank"
+                  className="flex items-center text-foreground/70 hover:text-primary transition-colors"
+                >
+                  <span className="mr-2">Schedule a Call</span>
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
               </li>
             </ul>
           </div>
