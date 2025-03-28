@@ -17,6 +17,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Savannah Haus | Advertising & App Development Agency",
   description: "Transform your digital presence with innovative advertising strategies and cutting-edge app development solutions.",
+  icons: {
+    icon: '/icon.png',
+    apple: '/apple-icon.png',
+    shortcut: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
