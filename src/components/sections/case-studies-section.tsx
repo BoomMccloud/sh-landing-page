@@ -39,7 +39,7 @@ const caseStudies = [
     ],
     slug: "live-music-social",
     link: "/case-studies/live-music-social",
-    image: "/placeholder-case-study-3.jpg"
+    image: "/live_house.png"
   }
 ]
 

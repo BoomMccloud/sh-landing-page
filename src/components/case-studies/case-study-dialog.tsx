@@ -82,7 +82,7 @@ const caseStudyContent = {
   "live-music-social": {
     title: "Live Music Social Platform",
     subtitle: "Built a hyper-local social platform connecting live-house music fans",
-    image: "/placeholder-case-study-3.jpg",
+    image: "/live_house.png",
     metrics: [
       { value: "2.5k+", label: "Monthly Active Users" },
       { value: "85%", label: "Event Connection Rate" },
