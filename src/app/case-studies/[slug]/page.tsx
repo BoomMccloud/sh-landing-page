@@ -1,16 +1,11 @@
-import type { CaseStudy } from "@/types"
-import { caseStudies } from "@/components/sections/case-studies-section"
+import { caseStudies, type CaseStudy } from "@/lib/data/case-studies"
 
 export async function generateStaticParams() {
-  return caseStudies
-    .filter((study) => study.slug)
-    .map((study) => ({
-      slug: study.slug!
-    }))
+  return Object.keys(caseStudies).map((slug) => ({ slug }))
 }
 
 export default function CaseStudyPage({ params }: { params: { slug: string } }) {
-  const study = caseStudies.find((s) => s.slug === params.slug)
+  const study: CaseStudy | undefined = caseStudies[params.slug as keyof typeof caseStudies]
   
   if (!study) return <div>Case study not found</div>
 

@@ -1,6 +1,7 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 
@@ -9,11 +10,15 @@ export default function ShortVideoAppCaseStudy() {
     <main className="min-h-screen bg-[hsl(var(--background))]">
       {/* Hero Section */}
       <div className="relative h-[60vh] min-h-[500px] bg-black">
-        <img
-          src="/square_short_video.jpg"
-          alt="Short Video App Growth Case Study"
-          className="absolute inset-0 w-full h-full object-cover opacity-80"
-        />
+        <div className="absolute inset-0">
+          <Image
+            src="/square_short_video.jpg"
+            alt="Short Video App Growth Case Study"
+            fill
+            className="object-cover opacity-80"
+            priority
+          />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[hsl(var(--background))]" />
         <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/60 to-transparent" />
         

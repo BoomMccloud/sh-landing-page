@@ -1,45 +1,28 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
 import { ArrowRight } from "lucide-react"
 import CaseStudyDialog from "@/components/case-studies/case-study-dialog"
+import { caseStudies } from "@/lib/data/case-studies"
 
-const caseStudies = [
+const caseStudyList = [
   {
-    title: "User Growth: Short Video App",
-    description: "Generated 100k visitors through organic & paid traffic in 2 weeks",
-    metrics: [
-      { value: "100k visitors in 2 weeks", label: "Total Visitors" },
-      { value: "35%", label: "CR Increase" }
-    ],
+    ...caseStudies["short-video-app-growth"],
     slug: "short-video-app-growth",
-    link: "/case-studies/short-video-app-growth",
-    image: "/square_short_video.jpg"
+    link: "/case-studies/short-video-app-growth"
   },
   {
-    title: "AI Strategy: Customer Service Bot",
-    description: "Enhanced customer support with RAG-powered AI and multilingual capabilities",
-    metrics: [
-      { value: "80%+", label: "Response Accuracy" },
-      { value: "60%", label: "Reduction in Manual Escalations" },
-      { value: "3 Weeks", label: "Time to Market" }
-    ],
+    ...caseStudies["ai-customer-service"],
     slug: "ai-customer-service",
-    link: "/case-studies/ai-customer-service",
-    image: "/chat_bot.png"
+    link: "/case-studies/ai-customer-service"
   },
   {
-    title: "Live Music Social Platform",
-    description: "Built a hyper-local social platform connecting live-house music fans",
-    metrics: [
-      { value: "2.5k+ MAU", label: "Monthly Active Users" },
-      { value: "85% Retention", label: "Event Connection Rate" }
-    ],
+    ...caseStudies["live-music-social"],
     slug: "live-music-social",
-    link: "/case-studies/live-music-social",
-    image: "/live_house.png"
+    link: "/case-studies/live-music-social"
   }
 ]
 
@@ -57,7 +40,7 @@ export default function CaseStudiesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {caseStudies.map((study, index) => (
+          {caseStudyList.map((study, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 20 }}
@@ -71,19 +54,22 @@ export default function CaseStudiesSection() {
                 <Card className="h-full transition-all hover:shadow-lg hover:border-[hsl(var(--primary))/0.5] group overflow-hidden">
                   <div className="aspect-[16/9] bg-[hsl(var(--muted))] relative">
                     {study.image && (
-                      <img
-                        src={study.image}
-                        alt={study.title}
-                        className="absolute inset-0 w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-                      />
+                      <div className="absolute inset-0">
+                        <Image
+                          src={study.image}
+                          alt={study.title}
+                          fill
+                          className="object-cover transition-transform duration-300 group-hover:scale-105"
+                        />
+                      </div>
                     )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
                     <div className="absolute inset-0 flex flex-col justify-end p-6">
                       <h3 className="text-2xl font-semibold text-white mb-3">{study.title}</h3>
-                      <p className="text-white/90 text-sm line-clamp-2 mb-2">{study.description}</p>
+                      <p className="text-white/90 text-sm line-clamp-2 mb-2">{study.subtitle}</p>
                       <div className="flex items-center gap-2">
                         <span className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white font-medium">
-                          {typeof study.metrics === 'string' ? study.metrics : study.metrics[0].value}
+                          {study.metrics[0].value}
                         </span>
                         <ArrowRight className="h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
                       </div>

@@ -1,28 +1,12 @@
 "use client"
 
 import Link from "next/link"
+import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import * as Dialog from "@radix-ui/react-dialog"
-import { cn } from "@/lib/utils"
-
-const VisuallyHidden = ({
-  children,
-  className,
-  ...props
-}: React.HTMLAttributes<HTMLSpanElement>) => {
-  return (
-    <span
-      className={cn(
-        "absolute h-px w-px p-0 -m-px overflow-hidden whitespace-nowrap border-0",
-        className
-      )}
-      {...props}
-    >
-      {children}
-    </span>
-  )
-}
+import { VisuallyHidden } from "@/components/ui/visually-hidden"
+import { caseStudies } from "@/lib/data/case-studies"
 
 interface CaseStudyDialogProps {
   isOpen: boolean
@@ -30,84 +14,8 @@ interface CaseStudyDialogProps {
   caseStudyId?: string
 }
 
-const caseStudyContent = {
-  "short-video-app-growth": {
-    title: "Short Video App Growth",
-    subtitle: "How we generated 100k visitors in just 2 weeks through strategic content and targeting",
-    image: "/square_short_video.jpg",
-    metrics: [
-      { value: "100k", label: "Visitors Generated" },
-      { value: "2", label: "Weeks Timeline" },
-      { value: "35%", label: "Conversion Rate Increase" }
-    ],
-    challenge: "Our client needed to rapidly grow their short video app's user base in the SEA market. The challenge was to achieve significant user acquisition while maintaining high-quality user engagement and retention rates.",
-    solution: [
-      "Development of 50+ gender-specific creative variations",
-      "Granular audience targeting based on user behavior and demographics",
-      "Continuous A/B testing and optimization of ad creatives",
-      "Strategic budget allocation across multiple channels"
-    ],
-    results: [
-      "100,000 new visitors within 2 weeks",
-      "35% increase in conversion rate",
-      "Significant improvement in user engagement metrics",
-      "Cost-effective user acquisition below industry averages"
-    ]
-  },
-  "ai-customer-service": {
-    title: "AI Strategy: Customer Service Bot",
-    subtitle: "Enhanced customer support with RAG-powered AI and multilingual capabilities",
-    image: "/chat_bot.png",
-    metrics: [
-      { value: "80%+", label: "Response Accuracy" },
-      { value: "60%", label: "Manual Escalation Reduction" },
-      { value: "3", label: "Weeks to Market" }
-    ],
-    challenge: "Our client needed to automate customer service while maintaining high quality responses and reducing manual escalations. The system needed to handle multiple languages and protect against prompt injection.",
-    solution: [
-      "Implemented secure RAG-based AI system with prompt protection",
-      "Deployed serverless architecture for unlimited scalability",
-      "Integrated support for English, Chinese, German, and Japanese",
-      "Optimized for instant response times",
-      "Built comprehensive CRM integration"
-    ],
-    results: [
-      "Achieved 80%+ response accuracy across all languages",
-      "Reduced manual escalations by 60%",
-      "Cut ticket resolution time from hours to minutes",
-      "Successfully handled thousands of concurrent users",
-      "Completed implementation in just 3 weeks"
-    ]
-  },
-  "live-music-social": {
-    title: "Live Music Social Platform",
-    subtitle: "Built a hyper-local social platform connecting live-house music fans",
-    image: "/live_house.png",
-    metrics: [
-      { value: "2.5k+", label: "Monthly Active Users" },
-      { value: "85%", label: "Event Connection Rate" },
-      { value: "4", label: "Integrated Platforms" }
-    ],
-    challenge: "Our client needed to create a social platform that connects live music fans before, during, and after performances, while integrating with existing messaging platforms and venue management systems.",
-    solution: [
-      "Developed responsive web and mobile applications",
-      "Implemented Line messaging platform integration",
-      "Built comprehensive venue CRM system",
-      "Created fan-to-fan connection features",
-      "Integrated social media advertising on Instagram"
-    ],
-    results: [
-      "Achieved 2.5k+ monthly active users",
-      "Maintained 85% event connection success rate",
-      "Successfully integrated with Line messaging",
-      "Streamlined venue management through CRM",
-      "Built active community around indie music events"
-    ]
-  }
-}
-
 export default function CaseStudyDialog({ isOpen, onClose, caseStudyId = "short-video-app-growth" }: CaseStudyDialogProps) {
-  const content = caseStudyContent[caseStudyId as keyof typeof caseStudyContent]
+  const content = caseStudies[caseStudyId as keyof typeof caseStudies]
 
   return (
     <Dialog.Root open={isOpen} onOpenChange={(open) => !open && onClose()}>
@@ -138,11 +46,15 @@ export default function CaseStudyDialog({ isOpen, onClose, caseStudyId = "short-
           >
             {/* Hero Section */}
             <div className="relative h-[40vh] min-h-[300px] bg-black">
-              <img
-                src={content.image}
-                alt={`${content.title} Case Study`}
-                className="absolute inset-0 w-full h-full object-cover opacity-80"
-              />
+              <div className="absolute inset-0">
+                <Image
+                  src={content.image}
+                  alt={`${content.title} Case Study`}
+                  fill
+                  className="object-cover opacity-80"
+                  priority
+                />
+              </div>
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[hsl(var(--background))]" />
 
               <div className="relative h-full flex flex-col justify-center p-6 md:p-8">

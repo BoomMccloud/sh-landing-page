@@ -11,15 +11,6 @@ import { BarChart3, Smartphone, Target, Megaphone, Palette, Bot } from "lucide-r
 export default function ServicesSection() {
   const [activeTab, setActiveTab] = useState("advertising")
 
-  const services = [
-    {
-      title: "Short Video Performance Marketing",
-      description: "Optimized ad campaigns for SEA market targeting short-form video platforms like TikTok and Instagram Reels",
-      // ... rest of the service object
-    },
-    // ... other services
-  ]
-
   return (
     <section id="services" className="py-20 bg-muted/30">
       <div className="container mx-auto px-4">
