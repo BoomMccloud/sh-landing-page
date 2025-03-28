@@ -43,6 +43,17 @@ export default function CaseStudyDialog({ isOpen, onClose }: CaseStudyDialogProp
               Case study showing how we generated 100k visitors in 2 weeks for a short video app through strategic content and targeting
             </VisuallyHidden>
           </Dialog.Description>
+
+          <Dialog.Close asChild>
+            <button
+              type="button"
+              className="absolute top-4 left-4 inline-flex items-center gap-2 text-white/90 hover:text-white p-2 rounded-full bg-black/20 backdrop-blur-sm transition-colors cursor-pointer hover:bg-black/30 z-50"
+            >
+              <ArrowLeft className="h-5 w-5" />
+              <span className="sr-only">Go back</span>
+            </button>
+          </Dialog.Close>
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -56,14 +67,6 @@ export default function CaseStudyDialog({ isOpen, onClose }: CaseStudyDialogProp
                 className="absolute inset-0 w-full h-full object-cover opacity-80"
               />
               <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-[hsl(var(--background))]" />
-
-              <button
-                onClick={onClose}
-                className="absolute top-4 left-4 inline-flex items-center gap-2 text-white/90 hover:text-white p-2 rounded-full bg-black/20 backdrop-blur-sm transition-colors cursor-pointer hover:bg-black/30"
-              >
-                <ArrowLeft className="h-5 w-5" />
-                <span className="sr-only">Go back</span>
-              </button>
 
               <div className="relative h-full flex flex-col justify-center p-6 md:p-8">
                 <motion.div
