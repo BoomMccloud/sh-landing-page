@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react"
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
+import { PopupButton } from '@typeform/embed-react'
 
 export default function HeroSection() {
   const { theme } = useTheme()
@@ -59,7 +60,7 @@ export default function HeroSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.8 }}
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+            className="flex flex-col sm:flex-row gap-4 justify-center items-center"
           >
             <Link href="https://calendly.com/jason-b-xu/30min" target="_blank">
               <motion.button 
@@ -77,6 +78,12 @@ export default function HeroSection() {
                 </motion.span>
               </motion.button>
             </Link>
+            <PopupButton 
+              id="S1k37E9F"
+              className="w-full sm:w-auto border border-[hsl(var(--border))] px-8 py-3 rounded-md font-medium hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--accent-foreground))] transition-all duration-300"
+            >
+              Send us a message
+            </PopupButton>
             <Link href="#services">
               <motion.button 
                 whileHover={{ scale: 1.05 }}

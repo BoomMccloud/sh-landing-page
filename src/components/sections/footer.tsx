@@ -36,6 +36,11 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
+                  AI Integration
+                </Link>
+              </li>
+              <li>
+                <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
                   Performance Advertising
                 </Link>
               </li>
@@ -47,11 +52,6 @@ export default function Footer() {
               <li>
                 <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
                   iOS & Android Development
-                </Link>
-              </li>
-              <li>
-                <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
-                  AI Integration
                 </Link>
               </li>
             </ul>
@@ -70,11 +70,6 @@ export default function Footer() {
                   Case Studies
                 </Link>
               </li>
-              <li>
-                <Link href="#" className="text-foreground/70 hover:text-primary transition-colors">
-                  Blog
-                </Link>
-              </li>
             </ul>
           </div>
 
@@ -83,7 +78,7 @@ export default function Footer() {
             <ul className="space-y-3">
               <li className="flex items-start">
                 <Mail className="mr-2 h-5 w-5 text-primary shrink-0" />
-                <span className="text-foreground/70">info@savannahhaus.com</span>
+                <span className="text-foreground/70">hello@savannah.haus</span>
               </li>
               <li className="flex items-start">
                 <Link 

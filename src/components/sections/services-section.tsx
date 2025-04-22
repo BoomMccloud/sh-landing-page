@@ -6,10 +6,10 @@ import { useState } from "react"
 import { motion } from "framer-motion"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { BarChart3, Smartphone, Target, Megaphone, Palette, Bot } from "lucide-react"
+import { BarChart3, Smartphone, Target, Megaphone, Palette, Bot, Settings, TrendingUp, Users } from "lucide-react"
 
 export default function ServicesSection() {
-  const [activeTab, setActiveTab] = useState("advertising")
+  const [activeTab, setActiveTab] = useState("ai-consultancy")
 
   return (
     <section id="services" className="py-20 bg-muted/30">
@@ -21,9 +21,15 @@ export default function ServicesSection() {
           </p>
         </div>
 
-        <Tabs defaultValue="advertising" value={activeTab} onValueChange={setActiveTab} className="w-full">
+        <Tabs defaultValue="ai-consultancy" value={activeTab} onValueChange={setActiveTab} className="w-full">
           <div className="flex justify-center mb-8">
-            <TabsList className="grid w-full max-w-md grid-cols-2 h-[40px] bg-secondary p-[2px] rounded-full">
+            <TabsList className="grid w-full max-w-lg grid-cols-3 h-[40px] bg-secondary p-[2px] rounded-full">
+              <TabsTrigger 
+                value="ai-consultancy" 
+                className="rounded-full data-[state=active]:bg-background data-[state=active]:ring-1 data-[state=active]:ring-slate-200/40 dark:data-[state=active]:ring-slate-800 data-[state=active]:font-medium"
+              >
+                AI Consultancy
+              </TabsTrigger>
               <TabsTrigger 
                 value="advertising" 
                 className="rounded-full data-[state=active]:bg-background data-[state=active]:ring-1 data-[state=active]:ring-slate-200/40 dark:data-[state=active]:ring-slate-800 data-[state=active]:font-medium"
@@ -38,6 +44,32 @@ export default function ServicesSection() {
               </TabsTrigger>
             </TabsList>
           </div>
+
+          <TabsContent value="ai-consultancy" className="mt-0">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <ServiceCard
+                icon={<Settings className="h-10 w-10 text-primary" />}
+                title="Save Backoffice Costs"
+                description="Streamline backoffice operations by automating routine office tasks (data entry, reporting, email sorting). Reduce manual errors, cut costs, and free up your team."
+                isActive={activeTab === "ai-consultancy"}
+                delay={0.1}
+              />
+              <ServiceCard
+                icon={<TrendingUp className="h-10 w-10 text-primary" />}
+                title="Increase Revenue"
+                description="Optimize cash flow with automated invoicing and smart payment reminders. Improve collection rates and reduce manual effort."
+                isActive={activeTab === "ai-consultancy"}
+                delay={0.2}
+              />
+              <ServiceCard
+                icon={<Users className="h-10 w-10 text-primary" />}
+                title="Faster Sales Cycles"
+                description="Enhance customer engagement with automated lead scoring, personalized follow-ups, and intelligent CRM data enrichment. Boost conversions and retention."
+                isActive={activeTab === "ai-consultancy"}
+                delay={0.3}
+              />
+            </div>
+          </TabsContent>
 
           <TabsContent value="advertising" className="mt-0">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

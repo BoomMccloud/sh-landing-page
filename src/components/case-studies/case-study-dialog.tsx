@@ -1,12 +1,12 @@
 "use client"
 
-import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft } from "lucide-react"
 import { motion } from "framer-motion"
 import * as Dialog from "@radix-ui/react-dialog"
 import { VisuallyHidden } from "@/components/ui/visually-hidden"
 import { caseStudies } from "@/lib/data/case-studies"
+import { PopupButton } from '@typeform/embed-react'
 
 interface CaseStudyDialogProps {
   isOpen: boolean
@@ -136,12 +136,12 @@ export default function CaseStudyDialog({ isOpen, onClose, caseStudyId = "short-
                   <p className="text-white/90 text-lg mb-6 max-w-2xl mx-auto">
                     Let&apos;s discuss how we can help you achieve similar results for your business.
                   </p>
-                  <Link
-                    href="/contact"
+                  <PopupButton
+                    id="S1k37E9F"
                     className="inline-flex items-center justify-center px-6 py-3 text-base font-medium text-[hsl(var(--primary))] bg-white rounded-lg hover:bg-white/90 transition-colors"
                   >
                     Get Started
-                  </Link>
+                  </PopupButton>
                 </div>
               </div>
             </div>
