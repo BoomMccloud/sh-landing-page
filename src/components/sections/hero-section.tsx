@@ -7,6 +7,24 @@ import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
 import { PopupButton } from '@typeform/embed-react'
 
+// Helper function to safely send GA events
+declare global {
+  interface Window {
+    gtag?: (command: 'event', eventName: string, eventParams?: Record<string, string | number | boolean>) => void;
+  }
+}
+
+const trackGAEvent = (eventName: string) => {
+  if (typeof window !== 'undefined' && window.gtag) {
+    window.gtag('event', eventName, {
+      'event_category': 'CTA',
+      'event_label': eventName,
+    });
+  } else {
+    console.warn(`GA event "${eventName}" not sent: gtag not available.`);
+  }
+};
+
 export default function HeroSection() {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
@@ -64,6 +82,7 @@ export default function HeroSection() {
           >
             <Link href="https://calendly.com/jason-b-xu/30min" target="_blank">
               <motion.button 
+                onClick={() => trackGAEvent('Schedule a Call')}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="w-full sm:w-auto bg-[hsl(var(--primary))] text-[hsl(var(--primary-foreground))] px-8 py-3 rounded-md font-medium hover:bg-[hsl(var(--primary))/0.9] transition-all duration-300"
@@ -78,12 +97,14 @@ export default function HeroSection() {
                 </motion.span>
               </motion.button>
             </Link>
-            <PopupButton 
-              id="S1k37E9F"
-              className="w-full sm:w-auto border border-[hsl(var(--border))] px-8 py-3 rounded-md font-medium hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--accent-foreground))] transition-all duration-300"
-            >
-              Send us a message
-            </PopupButton>
+            <span onClick={() => trackGAEvent('Send us a message')}>
+              <PopupButton 
+                id="S1k37E9F"
+                className="w-full sm:w-auto border border-[hsl(var(--border))] px-8 py-3 rounded-md font-medium hover:bg-[hsl(var(--accent))] hover:text-[hsl(var(--accent-foreground))] transition-all duration-300"
+              >
+                Send us a message
+              </PopupButton>
+            </span>
             <Link href="#services">
               <motion.button 
                 whileHover={{ scale: 1.05 }}
