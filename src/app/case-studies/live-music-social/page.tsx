@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation'
 import { caseStudies } from "@/lib/data/case-studies"
 import CaseStudyPageLayout from "@/components/case-studies/case-study-page-layout"
 
-const SLUG = "short-video-app-growth"
+const SLUG = "live-music-social"
 
 export async function generateMetadata(): Promise<Metadata> {
   const content = caseStudies[SLUG]
@@ -16,11 +16,11 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 }
 
-export default function ShortVideoAppGrowthPage() {
+export default function LiveMusicSocialPage() {
   const content = caseStudies[SLUG]
 
   if (!content) {
-    notFound() // Trigger a 404 page if data for this specific slug is missing
+    notFound()
   }
 
   return <CaseStudyPageLayout content={content} />
