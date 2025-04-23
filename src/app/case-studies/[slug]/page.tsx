@@ -1,56 +1,48 @@
-import { caseStudies, type CaseStudy } from "@/lib/data/case-studies"
+import { notFound } from "next/navigation"
+import { caseStudies } from "@/lib/data/case-studies"
+import CaseStudyClientContent from "@/components/case-studies/case-study-client-content"
+import type { CaseStudy } from "@/lib/data/case-studies"
 
-export async function generateStaticParams() {
-  return Object.keys(caseStudies).map((slug) => ({ slug }))
+interface CaseStudyPageProps {
+  params: {
+    slug: string
+  }
 }
 
-interface Props {
-  params: Promise<{ slug: string }>
-}
+export default function CaseStudyPage({ params }: CaseStudyPageProps) {
+  const { slug } = params
+  const content = caseStudies[slug as keyof typeof caseStudies]
 
-export default async function CaseStudyPage({ params }: Props) {
-  const resolvedParams = await params
-  const study: CaseStudy | undefined = caseStudies[resolvedParams.slug as keyof typeof caseStudies]
-  
-  if (!study) return <div>Case study not found</div>
+  // Handle cases where the slug doesn't match any case study
+  if (!content) {
+    notFound()
+  }
 
   return (
-    <div className="max-w-4xl mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8">{study.title}</h1>
-      <div className="space-y-8">
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Key Results</h2>
-          <ul className="list-disc pl-6 space-y-2">
-            {study.results.map((result, i) => (
-              <li key={i}>{result}</li>
-            ))}
-          </ul>
-        </section>
-        
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Metrics Achieved</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-            {study.metrics.map((metric, i) => (
-              <div key={i} className="p-4 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold">{metric.value}</p>
-                <p className="text-gray-600">{metric.label}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-        
-        <section>
-          <h2 className="text-2xl font-semibold mb-4">Strategy Overview</h2>
-          <div className="space-y-4">
-            <p>Implemented a dual-pronged approach combining:</p>
-            <ul className="list-disc pl-6">
-              <li>High-frequency creative testing (10+ variations per story)</li>
-              <li>Demographic-specific audience segmentation</li>
-              <li>Real-time performance optimization</li>
-            </ul>
-          </div>
-        </section>
-      </div>
-    </div>
+    <CaseStudyClientContent content={content} />
   )
+}
+
+// Optional: Generate static paths if you know all slugs beforehand
+// This improves performance by pre-rendering pages at build time.
+export async function generateStaticParams() {
+  return Object.keys(caseStudies).map((slug) => ({
+    slug,
+  }))
+}
+
+// Optional: Add metadata for SEO
+export async function generateMetadata({ params }: CaseStudyPageProps) {
+  const { slug } = params
+  const content = caseStudies[slug as keyof typeof caseStudies] as CaseStudy | undefined
+
+  if (!content) {
+    return { title: "Case Study Not Found" }
+  }
+
+  return {
+    title: `${content.title} - Case Study`,
+    description: content.subtitle,
+    // Add other metadata tags as needed (e.g., open graph)
+  }
 } 

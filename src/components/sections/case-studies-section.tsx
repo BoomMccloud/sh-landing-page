@@ -1,10 +1,9 @@
 "use client"
 
-import { useState } from "react"
 import Image from "next/image"
+import Link from "next/link"
 import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
-import CaseStudyDialog from "@/components/case-studies/case-study-dialog"
 import { caseStudies } from "@/lib/data/case-studies"
 
 const caseStudyList = [
@@ -31,8 +30,6 @@ const caseStudyList = [
 ]
 
 export default function CaseStudiesSection() {
-  const [selectedCaseStudy, setSelectedCaseStudy] = useState<string | null>(null)
-
   return (
     <section id="case-studies" className="py-20">
       <div className="container mx-auto px-4">
@@ -51,9 +48,9 @@ export default function CaseStudiesSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <button 
-                onClick={() => study.slug && setSelectedCaseStudy(study.slug)}
-                className="w-full text-left"
+              <Link 
+                href={study.link ?? "#"}
+                className="w-full text-left block"
               >
                 <Card className="h-full transition-all hover:shadow-lg hover:border-[hsl(var(--primary))/0.5] group overflow-hidden">
                   <div className="aspect-[16/9] bg-[hsl(var(--muted))] relative">
@@ -74,35 +71,11 @@ export default function CaseStudiesSection() {
                     </div>
                   </div>
                 </Card>
-              </button>
+              </Link>
             </motion.div>
           ))}
         </div>
       </div>
-
-      <CaseStudyDialog
-        isOpen={selectedCaseStudy === "short-video-app-growth"}
-        onClose={() => setSelectedCaseStudy(null)}
-        caseStudyId="short-video-app-growth"
-      />
-
-      <CaseStudyDialog
-        isOpen={selectedCaseStudy === "ai-customer-service"}
-        onClose={() => setSelectedCaseStudy(null)}
-        caseStudyId="ai-customer-service"
-      />
-
-      <CaseStudyDialog
-        isOpen={selectedCaseStudy === "live-music-social"}
-        onClose={() => setSelectedCaseStudy(null)}
-        caseStudyId="live-music-social"
-      />
-
-      <CaseStudyDialog
-        isOpen={selectedCaseStudy === "ad-insertion-automation"}
-        onClose={() => setSelectedCaseStudy(null)}
-        caseStudyId="ad-insertion-automation"
-      />
     </section>
   )
 } 
