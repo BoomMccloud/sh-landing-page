@@ -4,7 +4,6 @@ import { useState } from "react"
 import Image from "next/image"
 import { motion } from "framer-motion"
 import { Card } from "@/components/ui/card"
-import { ArrowRight } from "lucide-react"
 import CaseStudyDialog from "@/components/case-studies/case-study-dialog"
 import { caseStudies } from "@/lib/data/case-studies"
 
@@ -23,6 +22,11 @@ const caseStudyList = [
     ...caseStudies["live-music-social"],
     slug: "live-music-social",
     link: "/case-studies/live-music-social"
+  },
+  {
+    ...caseStudies["ad-insertion-automation"],
+    slug: "ad-insertion-automation",
+    link: "/case-studies/ad-insertion-automation"
   }
 ]
 
@@ -67,12 +71,6 @@ export default function CaseStudiesSection() {
                     <div className="absolute inset-0 flex flex-col justify-end p-6">
                       <h3 className="text-2xl font-semibold text-white mb-3">{study.title}</h3>
                       <p className="text-white/90 text-sm line-clamp-2 mb-2">{study.subtitle}</p>
-                      <div className="flex items-center gap-2">
-                        <span className="px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full text-sm text-white font-medium">
-                          {study.metrics[0].value}
-                        </span>
-                        <ArrowRight className="h-4 w-4 text-white transition-transform duration-300 group-hover:translate-x-1" />
-                      </div>
                     </div>
                   </div>
                 </Card>
@@ -98,6 +96,12 @@ export default function CaseStudiesSection() {
         isOpen={selectedCaseStudy === "live-music-social"}
         onClose={() => setSelectedCaseStudy(null)}
         caseStudyId="live-music-social"
+      />
+
+      <CaseStudyDialog
+        isOpen={selectedCaseStudy === "ad-insertion-automation"}
+        onClose={() => setSelectedCaseStudy(null)}
+        caseStudyId="ad-insertion-automation"
       />
     </section>
   )

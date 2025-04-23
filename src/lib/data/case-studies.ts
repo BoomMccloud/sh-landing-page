@@ -13,7 +13,7 @@ export interface CaseStudy {
 
 export const caseStudies: Record<string, CaseStudy> = {
   "short-video-app-growth": {
-    title: "User Growth: Short Video App",
+    title: "Mobile App User Acquisition",
     subtitle: "How we generated 100k visitors in just 2 weeks through strategic content and targeting",
     image: "/square_short_video.jpg",
     metrics: [
@@ -36,7 +36,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     ]
   },
   "ai-customer-service": {
-    title: "AI Strategy: Customer Service",
+    title: "AI Customer Service",
     subtitle: "Enhanced customer support with RAG-powered AI and multilingual capabilities",
     image: "/chat_bot.png",
     metrics: [
@@ -61,7 +61,7 @@ export const caseStudies: Record<string, CaseStudy> = {
     ]
   },
   "live-music-social": {
-    title: "Live Music Social Platform",
+    title: "Increase User Engagement",
     subtitle: "Built a hyper-local social platform connecting live-house music fans",
     image: "/live_house.png",
     metrics: [
@@ -83,6 +83,29 @@ export const caseStudies: Record<string, CaseStudy> = {
       "Successfully integrated with Line messaging",
       "Streamlined venue management through CRM",
       "Built active community around indie music events"
+    ]
+  },
+  "ad-insertion-automation": {
+    title: "AI Backoffice Automation",
+    subtitle: "Streamlined ad insertion order processing from 48 hours to 1 hour using OCR and workflow automation.",
+    image: "/automation_gear.png",
+    metrics: [
+      { value: "1 Hour", label: "Processing Time" },
+      { value: "48x", label: "Speed Improvement" },
+      { value: "100%", label: "Term Verification" }
+    ],
+    challenge: "Our client faced significant delays and manual effort in processing advertising insertion orders, including verifying contract terms, which took up to 48 hours per order.",
+    solution: [
+      "Implemented Optical Character Recognition (OCR) for invoice data extraction",
+      "Developed workflow automation using n8n to streamline processing",
+      "Created a custom API for seamless integration and automated verification",
+      "Integrated automated email notifications for advertisers"
+    ],
+    results: [
+      "Reduced insertion order processing time from 48 hours to under 1 hour",
+      "Achieved 100% automated verification of contract terms",
+      "Eliminated manual data entry errors",
+      "Improved advertiser satisfaction with faster confirmations"
     ]
   }
 } 
